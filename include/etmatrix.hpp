@@ -1,71 +1,16 @@
-#ifndef ETMATRIX_H
-#define ETMATRIX_H 1
-#include <cassert>
-#include <iostream>
-#include <initializer_list>
-#include <vector>
+#ifndef EMATRIX_H
+#define EMATRIX_H 1
+#include "matrix.hpp"
 namespace lib
 {
 template <typename T>
-class etmatrix
+class etmatrix : public matrix<T>
 {
-private:
-    bool array;
-    size_t rows_n, cols_n;
-    std::vector<T> vec;
-
 public:
-    constexpr size_t rows() { return rows_n; }
-    constexpr size_t cols() { return cols_n; }
+    etmatrix(const std::initializer_list<T> l) : matrix<T>(l) {}
+    etmatrix(const std::initializer_list<T> l, size_t rows, size_t cols) : matrix<T>(l, rows, cols) {}
+    etmatrix(const std::initializer_list<std::initializer_list<T>> l) : matrix<T>(l){};
 
-    etmatrix(const std::initializer_list<T> l)
-    {
-        array = true;
-        vec = std::vector<T>(l);
-    };
-
-    etmatrix(const std::initializer_list<T> l, size_t rows, size_t cols)
-    {
-        array = false;
-        vec = std::vector<T>(l);
-        rows_n = rows;
-        cols_n = cols;
-    };
-
-    etmatrix(const std::initializer_list<std::initializer_list<T>> l)
-    {
-        array = false;
-        vec.clear();
-        rows_n = l.size();
-        auto temp = *(l.begin());
-        cols_n = temp.size();
-        for (auto it = l.begin(); it < l.end(); it++)
-        {
-            assert(it->size() == cols_n);
-            for (auto inner = (*it).begin(); inner < (*it).end(); inner++)
-            {
-                vec.push_back(*inner);
-            }
-        }
-    }
-
-    inline T &operator()(size_t i)
-    {
-        assert(i < vec.size());
-        return vec[i];
-    };
-    inline const T &operator()(size_t i) const
-    {
-        assert(i < vec.size());
-        return vec[i];
-    };
-
-    inline T &operator()(size_t i, size_t j)
-    {
-        int k = (i * (cols())) + j;
-        assert(k < vec.size());
-        return vec[k];
-    }
     inline friend std::ostream &operator<<(std::ostream &out, const etmatrix<T> e)
     {
         if (e.array == true)
@@ -103,6 +48,5 @@ public:
         return out;
     }
 };
-
 } // namespace lib
-#endif // 1
+#endif
