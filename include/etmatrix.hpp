@@ -24,10 +24,12 @@ public:
         vec = std::vector<T>(l);
     };
 
-    etmatrix(const std::initializer_list<T> l, size_t row, size_t col)
+    etmatrix(const std::initializer_list<T> l, size_t rows, size_t cols)
     {
         array = false;
         vec = std::vector<T>(l);
+        rows_n=rows;
+        cols_n=cols;
     };
 
     inline T &operator()(size_t i)
@@ -41,8 +43,12 @@ public:
         return vec[i];
     };
 
-    T &operator()(size_t i, size_t j)
+    inline T &operator()(size_t i, size_t j)
     {
+        // std::cout <<cols();
+        int k = (i * (cols())) + j;
+        assert(k<vec.size());
+        return vec[k];
     }
 
     inline friend std::ostream &operator<<(std::ostream &out, const etmatrix<T> e)
