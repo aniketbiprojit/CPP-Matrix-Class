@@ -1,5 +1,6 @@
 #ifndef ETMATRIX_H
 #define ETMATRIX_H 1
+#include <cassert>
 #include <iostream>
 #include <initializer_list>
 #include <vector>
@@ -14,8 +15,8 @@ private:
     std::vector<T> vec;
 
 public:
-    size_t rows() { return rows_n; }
-    size_t cols() { return cols_n; }
+    constexpr size_t rows() { return rows_n; }
+    constexpr size_t cols() { return cols_n; }
 
     etmatrix(const std::initializer_list<T> l, size_t size)
     {
@@ -29,18 +30,35 @@ public:
         vec = std::vector<T>(l);
     };
 
-    friend std::ostream& operator <<(std::ostream& out,const etmatrix<T> e){
-        if(e.array==true){
+    inline T &operator()(size_t i)
+    {
+        assert(i < vec.size());
+        return vec[i];
+    };
+    inline const T &operator()(size_t i) const
+    {
+        assert(i < vec.size());
+        return vec[i];
+    };
+
+    T &operator()(size_t i, size_t j)
+    {
+    }
+
+    inline friend std::ostream &operator<<(std::ostream &out, const etmatrix<T> e)
+    {
+        if (e.array == true)
+        {
             auto it = e.vec.begin();
             out << "[";
-            for (it; it < e.vec.end()-1; it++)
+            for (it; it < e.vec.end() - 1; it++)
             {
                 out << *it << ", ";
             }
-            out << *it <<"]";
+            out << *it << "]";
         }
         return out;
-    } 
+    }
 };
 
 } // namespace lib
