@@ -7,6 +7,6 @@ int main(int argc, char *argv[])
 	std::endl(std::cout);
 	
 	lib::etmatrix<int> e_arr({1, 2, 3}, 3);
-	e(2)=20;
-	std::cout << e;	
+	e_arr(2)=20;
+	std::cout << e_arr;	
 }
