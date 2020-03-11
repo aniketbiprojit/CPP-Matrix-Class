@@ -28,14 +28,25 @@ public:
     {
         array = false;
         vec = std::vector<T>(l);
-        rows_n=rows;
-        cols_n=cols;
+        rows_n = rows;
+        cols_n = cols;
     };
 
-
-    etmatrix(const std::initializer_list<T> l)
+    etmatrix(const std::initializer_list<std::initializer_list<T>> l)
     {
-
+        array = false;
+        vec.clear();
+        rows_n = l.size();
+        auto temp = *(l.begin());
+        cols_n = temp.size();
+        for (auto it = l.begin(); it < l.end(); it++)
+        {
+            assert(it->size() == cols_n);
+            for (auto inner = (*it).begin(); inner < (*it).end(); inner++)
+            {
+                vec.push_back(*inner);
+            }
+        }
     }
 
     inline T &operator()(size_t i)
@@ -52,10 +63,9 @@ public:
     inline T &operator()(size_t i, size_t j)
     {
         int k = (i * (cols())) + j;
-        assert(k<vec.size());
+        assert(k < vec.size());
         return vec[k];
     }
-
     inline friend std::ostream &operator<<(std::ostream &out, const etmatrix<T> e)
     {
         if (e.array == true)
@@ -67,6 +77,28 @@ public:
                 out << *it << ", ";
             }
             out << *it << "]";
+        }
+        else
+        {
+            out << "[";
+            for (int i = 0; i < e.rows_n; i++)
+            {
+                out << "[";
+                for (int j = 0; j < e.cols_n; j++)
+                {
+                    if (j == e.cols_n - 1)
+                        out << e.vec[(i * (e.cols_n)) + j] << "";
+                    else
+                        out << e.vec[(i * (e.cols_n)) + j]<< ", ";
+                }
+                if (i == e.rows_n - 1)
+                    out << "]";
+                else
+                {
+                    out << "], ";
+                }
+            }
+            out << "]";
         }
         return out;
     }
