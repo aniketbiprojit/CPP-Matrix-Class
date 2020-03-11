@@ -1,5 +1,5 @@
 CC		:= g++
-C_FLAGS := -std=c++2a -g
+C_FLAGS := -std=c++17 -g
 
 BIN		:= bin
 SRC		:= src
