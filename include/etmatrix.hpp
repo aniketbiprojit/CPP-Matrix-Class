@@ -1,5 +1,6 @@
 #ifndef ETMATRIX_H
 #define ETMATRIX_H 1
+#include <iostream>
 #include <initializer_list>
 #include <vector>
 namespace lib
@@ -29,7 +30,15 @@ public:
     };
 
     friend std::ostream& operator <<(std::ostream& out,const etmatrix<T> e){
-        out << "testing";
+        if(e.array==true){
+            auto it = e.vec.begin();
+            out << "[";
+            for (it; it < e.vec.end()-1; it++)
+            {
+                out << *it << ", ";
+            }
+            out << *it <<"]";
+        }
         return out;
     } 
 };
