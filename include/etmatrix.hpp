@@ -18,7 +18,7 @@ public:
     constexpr size_t rows() { return rows_n; }
     constexpr size_t cols() { return cols_n; }
 
-    etmatrix(const std::initializer_list<T> l, size_t size)
+    etmatrix(const std::initializer_list<T> l)
     {
         array = true;
         vec = std::vector<T>(l);
@@ -31,6 +31,12 @@ public:
         rows_n=rows;
         cols_n=cols;
     };
+
+
+    etmatrix(const std::initializer_list<T> l)
+    {
+
+    }
 
     inline T &operator()(size_t i)
     {
@@ -45,7 +51,6 @@ public:
 
     inline T &operator()(size_t i, size_t j)
     {
-        // std::cout <<cols();
         int k = (i * (cols())) + j;
         assert(k<vec.size());
         return vec[k];
