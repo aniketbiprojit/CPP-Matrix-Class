@@ -66,6 +66,13 @@ public:
         return vec[k];
     }
 
+    inline const T &operator()(size_t i, size_t j) const
+    {
+        int k = (i * (cols_n)) + j;
+        assert(k < vec.size());
+        return vec[k];
+    };
+
     inline friend std::ostream &operator<<(std::ostream &out, const matrix<T> e)
     {
         if (e.array == true)
