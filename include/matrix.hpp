@@ -14,15 +14,15 @@ public:
     bool array;
     size_t rows_n, cols_n;
     std::vector<T> vec;
+    constexpr size_t size() { return vec.size(); }
     constexpr size_t rows() { return rows_n; }
     constexpr size_t cols() { return cols_n; }
-
+    matrix() { array = false; }
     matrix(const std::initializer_list<T> l)
     {
         array = true;
         vec = std::vector<T>(l);
     };
-
     matrix(const std::initializer_list<T> l, size_t rows, size_t cols)
     {
         array = false;

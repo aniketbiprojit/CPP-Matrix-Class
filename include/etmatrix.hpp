@@ -7,29 +7,23 @@ template <typename T>
 class etmatrix : public matrix<T>
 {
 public:
+    etmatrix() : matrix<T>() {}
     etmatrix(const std::initializer_list<T> l) : matrix<T>(l) {}
     etmatrix(const std::initializer_list<T> l, size_t rows, size_t cols) : matrix<T>(l, rows, cols) {}
     etmatrix(const std::initializer_list<std::initializer_list<T>> l) : matrix<T>(l){};
-    template <typename expression>
-    void test(const expression exp)
-    {
-        for (size_t i = 0; i < matrix<T>::rows(); i++)
-        {
-            for (size_t j = 0; j < matrix<T>::cols(); j++)
-            {
-                std::cout << exp(i, j);
-            }
-        }
-    }
 
     template <typename expression>
     inline etmatrix<T> operator=(const expression &exp)
     {
+        matrix<T>::vec = std::vector<T>(exp.size);
+        matrix<T>::rows_n=exp.rows;
+        matrix<T>::cols_n=exp.cols;
+
         for (size_t i = 0; i < matrix<T>::rows(); i++)
         {
             for (size_t j = 0; j < matrix<T>::cols(); j++)
             {
-                matrix<T>::operator()(i,j)= exp(i, j);
+                matrix<T>::operator()(i, j) = exp(i, j);
             }
         }
         return *this;
@@ -81,10 +75,20 @@ private:
     const Right &r;
 
 public:
-    etmatrixsum(Left &l_val, Right &r_val) : l(l_val), r(r_val) {}
+    size_t size, rows, cols;
+    etmatrixsum(Left &l_val, Right &r_val) : l(l_val), r(r_val)
+    {
+        size = l.vec.size();
+        rows = l.rows_n;
+        cols = l.cols_n;
+    }
 
     const T operator()(size_t i, size_t j) const
     {
+        assert(l.vec.size() == r.vec.size());
+        assert(l.rows_n == r.rows_n);
+        assert(l.cols_n == r.cols_n);
+
         return l(i, j) + r(i, j);
     }
 
