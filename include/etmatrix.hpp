@@ -98,10 +98,10 @@ public:
     }
 };
 
-template <typename Left, typename Right>
-lib::etmatrixsum<int, Left, Right> operator+(Left &l, Right &r)
+template <typename T=float,typename Left, typename Right>
+lib::etmatrixsum<T, Left, Right> operator+(Left &l, Right &r)
 {
-    return lib::etmatrixsum<int, Left, Right>(l, r);
+    return lib::etmatrixsum<T, Left, Right>(l, r);
 }
 } // namespace lib
 #endif
