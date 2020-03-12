@@ -21,18 +21,19 @@ public:
             }
         }
     }
-    // inline etmatrix<T> operator=(const expression &exp)
-    // {
-    //     std::cout << "ok";
-    //     for (size_t i = 0; i < matrix<T>::rows(); i++)
-    //     {
-    //         for (size_t j = 0; j < matrix<T>::cols(); j++)
-    //         {
-    //             matrix<T>::operator()(i, j) = exp(i, j);
-    //         }
-    //     }
-    //     return *(this);
-    // }
+
+    template <typename expression>
+    inline etmatrix<T> operator=(const expression &exp)
+    {
+        for (size_t i = 0; i < matrix<T>::rows(); i++)
+        {
+            for (size_t j = 0; j < matrix<T>::cols(); j++)
+            {
+                matrix<T>::operator()(i,j)= exp(i, j);
+            }
+        }
+        return *this;
+    }
 
     inline friend std::ostream &operator<<(std::ostream &out, const etmatrix<T> e)
     {
@@ -82,10 +83,10 @@ private:
 public:
     etmatrixsum(Left &l_val, Right &r_val) : l(l_val), r(r_val) {}
 
-    // const T &operator()(size_t i, size_t j) const
-    // {
-    //     return l(i, j) + r(i, j);
-    // }
+    const T operator()(size_t i, size_t j) const
+    {
+        return l(i, j) + r(i, j);
+    }
 
     T operator()(size_t i, size_t j)
     {
