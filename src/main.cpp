@@ -1,24 +1,8 @@
 #include <iostream>
 #include <vector>
-// #include <experimental/ranges/ranges>
 #include "etmatrix.hpp"
-
-template <typename T>
-class cpp20matrix
-{
-public:
-std::vector<std::vector<T>> vec;
-cpp20matrix(std::initializer_list<std::initializer_list<T>> l){
-	values.clear();
-	for(auto it=l.begin();iv<l.end();it++){
-		for(auto inner_it=it->begin();inner_it<it->end();inner_it++)
-			vec.push_back(*inner_it);
-	}
-
-
-}
-
-};
+#include "cpp20matrix.hpp"
+// #include <exceptional/ranges>
 
 int main(int argc, char *argv[])
 {
