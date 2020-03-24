@@ -20,7 +20,11 @@ public:
         }
     }
 
-    
+    inline friend auto operator+(const lib::cpp20matrix<T> &left, const lib::cpp20matrix<T> &right)
+    {
+        auto sum = ranges::views::zip_with(std::plus{}, left.vec, right.vec);
+        return sum;
+    }
 };
-}// namespace lib
+} // namespace lib
 #endif // CPP20MATRIX_H
