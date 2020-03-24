@@ -32,7 +32,7 @@ public:
     }
 
     auto add_( const lib::cpp20matrix<T> &right){
-       return ranges::views::zip_with(std::plus{}, vec, right.vec);
+       return ranges::views::zip_with(std::plus{}, vec,ranges::views::zip_with(std::plus{}, vec, right.vec));
     }
 
     inline friend auto operator+(const lib::cpp20matrix<T> &left, const lib::cpp20matrix<T> &right)

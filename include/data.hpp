@@ -1,3 +1,6 @@
+#ifndef DATA_H
+#define DATA_H
+
 #include <initializer_list>
 #include <random>
 namespace lib
@@ -5,15 +8,17 @@ namespace lib
 template <typename T = float>
 class data_generate
 {
+private:
     std::minstd_rand g;
-    bool flag=false;
+    bool flag = false;
+
 public:
     data_generate(size_t rows, size_t cols)
     {
         this->operator()(rows, cols);
     }
 
-    data_generate(size_t rows=10)
+    data_generate(size_t rows = 10)
     {
         this->operator()(rows, rows);
     }
@@ -29,9 +34,7 @@ public:
             {
                 temp1.push_back(g());
                 temp2.push_back(g());
-                std::cout << (temp1[j]/100000) << " " << (temp2[j]/100000) << "\n";
             }
-            std::cout << "\n";
             s1.push_back(temp1);
             s2.push_back(temp2);
         }
@@ -47,3 +50,4 @@ public:
 };
 
 } // namespace lib
+#endif // DATA_H

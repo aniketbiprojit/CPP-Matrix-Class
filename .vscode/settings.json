@@ -71,6 +71,7 @@
         "variant": "cpp",
         "compare": "cpp",
         "span": "cpp",
-        "stop_token": "cpp"
+        "stop_token": "cpp",
+        "concepts": "cpp"
     }
 }

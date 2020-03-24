@@ -18,8 +18,8 @@ public:
     inline etmatrix<T> operator=(const expression &exp)
     {
         matrix<T>::vec = std::vector<T>(exp.size);
-        matrix<T>::rows_n=exp.rows;
-        matrix<T>::cols_n=exp.cols;
+        matrix<T>::rows_n = exp.rows;
+        matrix<T>::cols_n = exp.cols;
 
         for (size_t i = 0; i < matrix<T>::rows(); i++)
         {
@@ -29,6 +29,17 @@ public:
             }
         }
         return *this;
+    }
+
+    friend void access(const etmatrix<T> e)
+    {
+        for (int i = 0; i < e.rows_n; i++)
+        {
+            for (int j = 0; j < e.cols_n; j++)
+            {
+                auto t = e.vec[(i * (e.cols_n)) + j];
+            }
+        }
     }
 
     inline friend std::ostream &operator<<(std::ostream &out, const etmatrix<T> e)
@@ -100,10 +111,10 @@ public:
     }
 };
 
-// template <typename T=float,typename Left, typename Right>
-// lib::etmatrixsum<T, Left, Right> operator+(Left &l, Right &r)
-// {
-//     return lib::etmatrixsum<T, Left, Right>(l, r);
-// }
+template <typename T = float, typename Left, typename Right>
+lib::etmatrixsum<T, Left, Right> operator+(Left &l, Right &r)
+{
+    return lib::etmatrixsum<T, Left, Right>(l, r);
+}
 } // namespace lib
 #endif

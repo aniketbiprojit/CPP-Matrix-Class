@@ -1,14 +1,16 @@
 #ifndef TIME_H
 #define TIME_H
 #include <chrono>
-    namespace lib
-
+#include <string>
+namespace lib
 {
 class time_taken
 {
 public:
-    void start()
+    void start(std::string s = "")
     {
+        if(s!="")
+            std::cout << s << ": ";
         t1 = std::chrono::high_resolution_clock::now();
     }
 
