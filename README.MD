@@ -2,7 +2,7 @@
 
 ## C++ version
 
-`Built on Version: 201709`
+`Built on Version: 201709 (GCC 10.1-Beta)`
 
 ## Benchmarks (in Microseconds)
 
