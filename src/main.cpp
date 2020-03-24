@@ -49,16 +49,14 @@ int main(int argc, char *argv[])
                                        {6.81, 5.58, 9.47, 9.38, 9.1, 0.42, 7.49, 7.01, 6.55, 7.12},
                                        {9.03, 6.4, 3.72, 5.38, 2.08, 5.87, 0.09, 1.51, 3.33, 7.9},
                                        {7.18, 3.38, 6.21, 0.41, 1.64, 9.82, 2.9, 3.95, 5.48, 2.93}});
-    auto c = cpp_mat + cpp_mat_1;
 
     lib::time_taken t;
     t.start();
-
-    for (auto i : c)
-    {
-        std::cout << i << " ";
-    }
-
+    auto c = (cpp_mat + cpp_mat_1);
+    std::cout << "\n"
+              << t.finish() << "\n";
+    t.start();
+    
     std::cout << "\n"
               << t.finish();
 }
