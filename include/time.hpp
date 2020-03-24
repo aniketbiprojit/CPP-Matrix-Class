@@ -1,5 +1,8 @@
+#ifndef TIME_H
+#define TIME_H
 #include <chrono>
-namespace lib
+    namespace lib
+
 {
 class time_taken
 {
@@ -25,3 +28,4 @@ private:
     std::chrono::high_resolution_clock::time_point t2;
 };
 } // namespace lib
+#endif // TIME_H

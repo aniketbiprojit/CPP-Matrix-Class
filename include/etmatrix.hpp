@@ -1,6 +1,7 @@
 #ifndef EMATRIX_H
 #define EMATRIX_H 1
 #include "matrix.hpp"
+#include <vector>
 namespace lib
 {
 template <typename T>
@@ -11,6 +12,7 @@ public:
     etmatrix(const std::initializer_list<T> l) : matrix<T>(l) {}
     etmatrix(const std::initializer_list<T> l, size_t rows, size_t cols) : matrix<T>(l, rows, cols) {}
     etmatrix(const std::initializer_list<std::initializer_list<T>> l) : matrix<T>(l){};
+    etmatrix(const std::vector<std::vector<T>> l) : matrix<T>(l){};
 
     template <typename expression>
     inline etmatrix<T> operator=(const expression &exp)

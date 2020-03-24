@@ -68,6 +68,9 @@
         "cfenv": "cpp",
         "cinttypes": "cpp",
         "typeindex": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "compare": "cpp",
+        "span": "cpp",
+        "stop_token": "cpp"
     }
 }

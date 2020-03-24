@@ -48,6 +48,23 @@ public:
         }
     }
 
+    matrix(const std::vector<std::vector<T>> l)
+    {
+        array = false;
+        vec.clear();
+        rows_n = l.size();
+        auto temp = *(l.begin());
+        cols_n = temp.size();
+        for (auto it = l.begin(); it < l.end(); it++)
+        {
+            assert(it->size() == cols_n);
+            for (auto inner = (*it).begin(); inner < (*it).end(); inner++)
+            {
+                vec.push_back(*inner);
+            }
+        }
+    }
+  
     inline T &operator()(size_t i)
     {
         assert(i < vec.size());

@@ -20,6 +20,21 @@ public:
         }
     }
 
+    cpp20matrix(std::vector<std::vector<T>> l)
+    {
+        vec.clear();
+        for (auto it = l.begin(); it < l.end(); it++)
+        {
+            std::vector<T> temp;
+            for (auto inner_it = it->begin(); inner_it < it->end(); inner_it++)
+                vec.push_back(*inner_it);
+        }
+    }
+
+    auto add_( const lib::cpp20matrix<T> &right){
+       return ranges::views::zip_with(std::plus{}, vec, right.vec);
+    }
+
     inline friend auto operator+(const lib::cpp20matrix<T> &left, const lib::cpp20matrix<T> &right)
     {
         auto sum = ranges::views::zip_with(std::plus{}, left.vec, right.vec);
