@@ -1,4 +1,4 @@
-CC		:= g++
+CC		:= g++-10
 C_FLAGS := -std=c++2a -g
 
 BIN		:= bin
