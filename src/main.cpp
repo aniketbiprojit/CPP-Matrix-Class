@@ -40,7 +40,6 @@ int main(int argc, char *argv[])
         t.start("\nET_MATRIX_ADD");
 
         e = e_mat + e_mat_1;
-        e = e + e_mat_1;
         et += t.finish();
         std::cout << et << "\n";
 
