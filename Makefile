@@ -2,20 +2,21 @@ CC		:= g++-10
 C_FLAGS := -std=c++2a -g
 
 BIN		:= bin
-LIB2	:= lib2
+LIB2		:= lib2
 HIN		:= in
 TIN		:= tin
 SRC		:= src
-INCLUDE	:= include
+INCLUDE		:= include
 LIB		:= lib
-
-LIBRARIES	:=
 
 ifeq ($(OS),Windows_NT)
 EXECUTABLE	:= main.exe
 else
 EXECUTABLE	:= main
 endif
+
+
+LIBRARIES	:=
 
 all: $(BIN)/$(EXECUTABLE)
 
