@@ -3,6 +3,7 @@ C_FLAGS := -std=c++2a -g
 
 BIN		:= bin
 HIN		:= in
+TIN		:= tin
 SRC		:= src
 INCLUDE	:= include
 LIB		:= lib
