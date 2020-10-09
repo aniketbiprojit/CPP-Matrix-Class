@@ -2,6 +2,7 @@ CC		:= g++-10
 C_FLAGS := -std=c++2a -g
 
 BIN		:= bin
+HIN		:= in
 SRC		:= src
 INCLUDE	:= include
 LIB		:= lib
